@@ -1,2 +1,7 @@
-package PACKAGE_NAME;public class DhrAllPageTest {
+public class DhrAllPageTest extends BaseStep {
+
+
+
+
+
 }

@@ -12,6 +12,329 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+
+    <!-- Dependency versions -->
+    <selenium.version>4.28.0</selenium.version>
+    <cucumber.version>7.20.1</cucumber.version>
+    <junit.version>5.11.3</junit.version>
+    <junit.platform.version>1.11.3</junit.platform.version>
+    <log4j.version>2.24.1</log4j.version>
+    <webdrivermanager.version>5.9.2</webdrivermanager.version>
+    <apache.commons.version>2.17.0</apache.commons.version>
+    <apache.commons.lang3.version>3.17.0</apache.commons.lang3.version>
+    <maven.surefire.version>3.5.1</maven.surefire.version>
+    <maven.failsafe.version>3.5.1</maven.failsafe.version>
+    <maven.compiler.version>3.13.0</maven.compiler.version>
+    <assertj.version>3.26.3</assertj.version>
+    <jackson.version>2.18.1</jackson.version>
+    <extentreports.version>5.1.2</extentreports.version>
+    <poi.version>5.3.0</poi.version>
+    <restassured.version>5.5.0</restassured.version>
+    <owner.version>1.0.12</owner.version>
+    <maven.site.version>3.20.0</maven.site.version>
+    <maven.project.info.version>3.7.0</maven.project.info.version>
+
+    <!-- Test execution properties -->
+    <skipTests>false</skipTests>
+    <skipITs>false</skipITs>
+    <cucumber.tags></cucumber.tags>
+</properties>
+
+<dependencies>
+<!-- Selenium WebDriver -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>${selenium.version}</version>
+</dependency>
+
+<!-- WebDriverManager for automatic driver management -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>${webdrivermanager.version}</version>
+</dependency>
+
+<!-- Cucumber BDD Framework -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>${cucumber.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit-platform-engine</artifactId>
+    <version>${cucumber.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-picocontainer</artifactId>
+    <version>${cucumber.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- JUnit 5 -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <version>${junit.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-platform-suite</artifactId>
+    <version>${junit.platform.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- AssertJ for fluent assertions -->
+<dependency>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-core</artifactId>
+    <version>${assertj.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- Apache Commons IO for file operations -->
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>${apache.commons.version}</version>
+</dependency>
+
+<!-- Apache Commons Lang for string utilities -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>${apache.commons.lang3.version}</version>
+</dependency>
+
+<!-- Log4j2 Logging Framework -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>${log4j.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>${log4j.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-slf4j2-impl</artifactId>
+    <version>${log4j.version}</version>
+</dependency>
+
+<!-- Configuration management -->
+<dependency>
+    <groupId>org.aeonbits.owner</groupId>
+    <artifactId>owner</artifactId>
+    <version>${owner.version}</version>
+</dependency>
+
+<!-- Jackson for JSON processing -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>${jackson.version}</version>
+</dependency>
+
+<!-- Extent Reports for HTML test reports -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>${extentreports.version}</version>
+</dependency>
+
+<!-- Apache POI for Excel operations (test data) -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>${poi.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>${poi.version}</version>
+</dependency>
+
+<!-- RestAssured for API testing (optional) -->
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>${restassured.version}</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- Selenium DevTools - REMOVED problematic dependency -->
+<!-- The selenium-devtools-v130 with version 4.0.0-rc-1 is incompatible with Selenium 4.27.0 -->
+<!-- DevTools support is already included in selenium-java 4.27.0 -->
+</dependencies>
+
+<build>
+<plugins>
+    <!-- Maven Compiler Plugin -->
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.version}</version>
+        <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+    </plugin>
+
+    <!-- Maven Surefire Plugin for unit tests -->
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.version}</version>
+        <configuration>
+            <skipTests>${skipTests}</skipTests>
+            <includes>
+                <include>**/*Test.java</include>
+                <include>**/*Tests.java</include>
+            </includes>
+            <systemPropertyVariables>
+                <cucumber.tags>${cucumber.tags}</cucumber.tags>
+            </systemPropertyVariables>
+        </configuration>
+    </plugin>
+
+    <!-- Maven Failsafe Plugin for integration tests -->
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${maven.failsafe.version}</version>
+        <configuration>
+            <skipITs>${skipITs}</skipITs>
+            <includes>
+                <include>**/*IT.java</include>
+                <include>**/CucumberTestRunner.java</include>
+            </includes>
+            <systemPropertyVariables>
+                <cucumber.tags>${cucumber.tags}</cucumber.tags>
+            </systemPropertyVariables>
+        </configuration>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>integration-test</goal>
+                    <goal>verify</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+
+    <!-- Maven Site Plugin for documentation -->
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>${maven.site.version}</version>
+    </plugin>
+
+    <!-- Maven Project Info Reports Plugin -->
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>${maven.project.info.version}</version>
+    </plugin>
+</plugins>
+</build>
+
+        <!-- Reporting -->
+<reporting>
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${maven.failsafe.version}</version>
+        <reportSets>
+            <reportSet>
+                <reports>
+                    <report>report-only</report>
+                </reports>
+            </reportSet>
+        </reportSets>
+    </plugin>
+</plugins>
+</reporting>
+
+        <!-- Profiles for different environments -->
+<profiles>
+<!-- Development profile -->
+<profile>
+    <id>dev</id>
+    <activation>
+        <activeByDefault>true</activeByDefault>
+    </activation>
+    <properties>
+        <environment>dev</environment>
+        <!--suppress UnresolvedMavenProperty -->
+        <cucumber.tags>@smoke or @regression</cucumber.tags>
     </properties>
-    
+</profile>
+
+<!-- Staging profile -->
+<profile>
+    <id>staging</id>
+    <properties>
+        <environment>staging</environment>
+        <cucumber.tags>@regression</cucumber.tags>
+    </properties>
+</profile>
+
+<!-- Production profile -->
+<profile>
+    <id>prod</id>
+    <properties>
+        <environment>prod</environment>
+        <cucumber.tags>@smoke</cucumber.tags>
+    </properties>
+</profile>
+
+<!-- Smoke tests only -->
+<profile>
+    <id>smoke</id>
+    <properties>
+        <cucumber.tags>@smoke</cucumber.tags>
+    </properties>
+</profile>
+
+<!-- Regression tests only -->
+<profile>
+    <id>regression</id>
+    <properties>
+        <cucumber.tags>@regression</cucumber.tags>
+    </properties>
+</profile>
+
+<!-- Parallel execution profile -->
+<profile>
+    <id>parallel</id>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>4</threadCount>
+                    <forkCount>2</forkCount>
+                    <reuseForks>true</reuseForks>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</profile>
+</profiles>
 </project>
