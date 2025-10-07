@@ -18,7 +18,7 @@ public class BaseStep extends LogTest {
 
         public static WebDriver driver;
         private static WebDriverWait wait;
-        private static final String DEFAULT_URL = "https://rezervasyon.denturgrup.com.tr/auth/login";
+        private static final String DEFAULT_URL = "https://dhrtest.d1-tech.com.tr/login";
         private static final int DEFAULT_TIMEOUT = 10;
 
         /**
