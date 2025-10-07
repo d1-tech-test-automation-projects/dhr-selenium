@@ -56,6 +56,17 @@ public class BaseStep extends LogTest {
             }
         }
 
+        //wairseconds method
+        public static void waitSeconds(int seconds) {
+                try {
+                    Thread.sleep(seconds * 1000L); // ✅ Mükemmel!
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.err.println("Wait interrupted: " + e.getMessage());
+                }
+            }
+
+        
         /**
          * Driver'ı kapatır
          */
